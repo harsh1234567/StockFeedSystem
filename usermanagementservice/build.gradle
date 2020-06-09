@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.usermanagementservice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+ compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+      implementation 'com.google.code.gson:gson:2.8.6'
+      implementation 'org.springframework.boot:spring-boot-starter-security'
+  compile group: 'com.couchbase.client', name: 'encryption', version: '1.0.0'
+  
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.springframework.kafka:spring-kafka'
+	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.1'
+	runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.1'
+		runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.1'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-data-couchbase'
+	implementation 'org.springframework.boot:spring-boot-starter-data-couchbase-reactive'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+ testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+
+
+test {
+	useJUnitPlatform()
+}
